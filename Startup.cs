@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PurpleBalls.Data;
 using VueCliMiddleware;
 
 namespace PurpleBalls
@@ -26,6 +28,10 @@ namespace PurpleBalls
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            var connection =
+                @"Server=localhost;Database=PurpleBalls;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
