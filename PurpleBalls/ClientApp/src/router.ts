@@ -26,5 +26,10 @@ export default new Router({
       name: 'fetch-data',
       component: () => import(/* webpackChunkName: "fetch-data" */ './views/FetchData.vue'),
     },
+    {
+      path: '/player-management',
+      name: 'player-management',
+      component: () => import(/* webpackChunkName: "fetch-data" */ './views/PlayerManagement.vue'),
+    },
   ],
 });

@@ -8,6 +8,7 @@ using PurpleBalls.Services.Players;
 
 namespace PurpleBalls.Controllers
 {
+    [Route("api/[controller]")]
     public class PlayersController : Controller
     {
         private readonly IPlayersService _playersService;
@@ -17,6 +18,7 @@ namespace PurpleBalls.Controllers
             _playersService = playersService;
         }
 
+        [Route("")]
         [HttpGet]
         public async Task<IEnumerable<Player>> GetAllPlayers()
         {

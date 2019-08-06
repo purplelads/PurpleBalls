@@ -54,6 +54,7 @@ export default class App extends Vue {
     { title: 'Home', icon: 'home', link: '/' },
     { title: 'Counter', icon: 'touch_app', link: '/counter' },
     { title: 'Fetch data', icon: 'get_app', link: '/fetch-data' },
+    { title: 'Player Management', icon: 'get_app', link: '/player-management' },
   ];
 }
 </script>
