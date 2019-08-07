@@ -7,10 +7,10 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <Authors>Software Ateliers</Authors>
-    <Company>Software Ateliers</Company>
-    <Description>ASP.NET Core + Vue.js starter project</Description>
-    <Copyright>MIT 2019 Software Ateliers</Copyright>
+    <Authors>Purple Team</Authors>
+    <Company>Purple Team</Company>
+    <Description>River football management tool</Description>
+    <Copyright>MIT 2019 Purple Team</Copyright>
     <AssemblyName>PurpleBalls</AssemblyName>
     <RootNamespace>PurpleBalls</RootNamespace>
     <Version>1.0.7</Version>

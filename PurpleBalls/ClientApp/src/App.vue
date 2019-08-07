@@ -31,7 +31,7 @@
     </v-content>
 
     <v-footer app>
-      <span>&nbsp;Software Ateliers&nbsp;&copy;&nbsp;2019</span>
+      <span>&nbsp;Purple Team&nbsp;&copy;&nbsp;2019</span>
     </v-footer>
 
   </v-app>
@@ -54,7 +54,7 @@ export default class App extends Vue {
     { title: 'Home', icon: 'home', link: '/' },
     { title: 'Counter', icon: 'touch_app', link: '/counter' },
     { title: 'Fetch data', icon: 'get_app', link: '/fetch-data' },
-    { title: 'Player Management', icon: 'get_app', link: '/player-management' },
+    { title: 'Player Management', icon: 'person_add', link: '/player-management' },
   ];
 }
 </script>
