@@ -31,5 +31,10 @@ export default new Router({
       name: 'player-management',
       component: () => import(/* webpackChunkName: "fetch-data" */ './views/PlayerManagement.vue'),
     },
+    {
+      path: '/create-shirt',
+      name: 'create-shirt',
+      component: () => import(/* webpackChunkName: "fetch-data" */ './views/CreateShirt.vue'),
+    },
   ],
 });

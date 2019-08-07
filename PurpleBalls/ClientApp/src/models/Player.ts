@@ -6,5 +6,7 @@ export class Player {
         public email: string,
         public phoneNumber: string,
         public isDeleted: boolean,
-    ) {}
+        public shirtNumber: number,
+        public shirtName: string,
+    ) { }
   }

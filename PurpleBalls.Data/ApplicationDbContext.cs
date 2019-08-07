@@ -12,5 +12,6 @@ namespace PurpleBalls.Data
         { }
 
         public DbSet<Player> Players { get; set; }
+        public DbSet<PlayerShirt> PlayerShirts { get; set; }
     }
 }
