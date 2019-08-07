@@ -12,6 +12,7 @@ namespace PurpleBalls.Data.Models
         public int ShirtStyle { get; set; }
         public string ShirtPrimary { get; set; }
         public string ShirtSecondary { get; set; }
+        public string TextColour { get; set; }
 
         [ForeignKey("Player")]
         public int PlayerId { get; set; }
