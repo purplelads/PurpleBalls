@@ -2,8 +2,23 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column>
-        <h1>Players</h1>
-        <p>Playaaaaaaaaaaaaaaaaaaaaaa</p>
+        
+        <v-layout>
+            <div>
+                <h1>Players</h1>
+                <p>Playaaaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
+            <v-layout align-end justify-end>
+
+                <v-btn color="secondary" @click="refreshPlayers">
+                    <v-icon left dark>refresh</v-icon>
+                    Refresh
+                </v-btn>
+
+                <AddPlayer />
+
+            </v-layout>
+        </v-layout>
 
         <v-data-table
           :headers="headers"
@@ -30,11 +45,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Player } from '../models/Player';
 import axios from 'axios';
+import { Getter, Action } from 'vuex-class';
+import AddPlayer from '@/components/AddPlayer.vue';
+const namespace: string = 'player';
 
-@Component({})
-export default class FetchDataView extends Vue {
-  private loading: boolean = true;
-  private players: Player[] = [];
+@Component({
+    components: { AddPlayer },
+})
+export default class PlayerManagementView extends Vue {
   private headers = [
     { text: 'First Name', value: 'firstName' },
     { text: 'Last Name', value: 'lastName' },
@@ -42,20 +60,23 @@ export default class FetchDataView extends Vue {
     { text: 'Phone', value: 'phoneNumber' },
   ];
 
+  @Getter('getLoading', { namespace })
+  private loading!: boolean;
+  @Getter('getPlayers', { namespace })
+  private players!: Player[];
+  @Action('getPlayers', { namespace })
+  private getPlayers: any;
+
+  private showEdit: boolean = false;
+
   private created() {
-    this.getPlayers();
+    if (this.players.length === 0) {
+        this.refreshPlayers();
+    }
   }
 
-  private getPlayers() {
-    axios
-      .get<Player[]>('api/players')
-      .then((response) => {
-        this.players = response.data;
-      })
-      .catch((e) => {
-          this.players = [];
-      })
-      .finally(() => (this.loading = false));
+  private refreshPlayers() {
+      this.getPlayers();
   }
 }
 </script>

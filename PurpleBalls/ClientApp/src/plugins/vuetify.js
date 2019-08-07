@@ -12,7 +12,12 @@ import {
   VToolbar,
   VDataTable,
   VProgressLinear,
-  transitions
+  transitions,
+  VDialog,
+  VCard,
+  VAutocomplete,
+  VSelect,
+  VTextField,
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 
@@ -30,6 +35,11 @@ Vue.use(Vuetify, {
     VDataTable,
     VProgressLinear,
     transitions,
+    VDialog,
+    VCard,
+    VAutocomplete,
+    VSelect,
+    VTextField,
   },
   theme: {
     primary: '#1976D2',

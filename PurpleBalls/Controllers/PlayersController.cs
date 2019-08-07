@@ -24,5 +24,12 @@ namespace PurpleBalls.Controllers
         {
             return await _playersService.GetAllPlayers();
         }
+
+        [Route("")]
+        [HttpPost]
+        public async Task<Player> AddPlayer([FromBody] Player player)
+        {
+            return await _playersService.AddPlayer(player);
+        }
     }
 }

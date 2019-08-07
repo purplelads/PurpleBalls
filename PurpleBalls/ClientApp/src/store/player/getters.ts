@@ -1,10 +1,13 @@
 import { GetterTree } from 'vuex';
-import { PlayerState } from './types';
+import { PlayersState } from './types';
 import { RootState } from '../types';
 import { Player } from '@/models/Player';
 
-export const getters: GetterTree<PlayerState, RootState> = {
-    getPlayer(state): Player {
-        return state.player;
+export const getters: GetterTree<PlayersState, RootState> = {
+    getPlayers(state): Player[] {
+        return state.players;
+    },
+    getLoading(state): boolean {
+        return state.loading;
     },
 };

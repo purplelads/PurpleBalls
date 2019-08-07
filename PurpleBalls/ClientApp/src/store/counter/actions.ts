@@ -1,5 +1,4 @@
 import { ActionTree } from 'vuex';
-import axios from 'axios';
 import { CounterState } from './types';
 import { RootState } from '../types';
 

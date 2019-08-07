@@ -10,6 +10,7 @@ namespace PurpleBalls.Services.Players
     public interface IPlayersService
     {
         Task<IEnumerable<Player>> GetAllPlayers();
+        Task<Player> AddPlayer(Player player);
     }
 
     public class PlayersService : IPlayersService
@@ -23,6 +24,14 @@ namespace PurpleBalls.Services.Players
         public async Task<IEnumerable<Player>> GetAllPlayers()
         {
             return await DbContext.Players.Where(x => !x.IsDeleted).ToListAsync();
+        }
+
+        public async Task<Player> AddPlayer(Player player)
+        {
+            await DbContext.Players.AddAsync(player);
+            await DbContext.SaveChangesAsync();
+
+            return player;
         }
     }
 }
