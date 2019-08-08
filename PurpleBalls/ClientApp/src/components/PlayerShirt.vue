@@ -71,7 +71,7 @@ import { PlayerShirtModel } from '../models/PlayerShirtModel';
 
 @Component({})
 export default class CreateShirt extends Vue {
-    @Prop({type: Object as () => PlayerShirtModel}) shirtInfo
+    @Prop(PlayerShirtModel) private shirtInfo!: PlayerShirtModel;
     private playerShirt: PlayerShirtModel = this.shirtInfo;
 }
 </script>
