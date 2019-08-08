@@ -84,14 +84,14 @@ export default class AddPlayer extends Vue {
 
   @Action('addPlayer', { namespace })
   private addPlayer!: any;
+
   private valid: boolean = false;
-  
   private saving: boolean = false;
   private dialog: boolean = false;
 
   private savePlayer() {
     this.saving = true;
-    
+
     if (!(this.$refs.form as any).validate()) {
       this.saving = false;
       return;
@@ -111,10 +111,6 @@ export default class AddPlayer extends Vue {
     this.player.phoneNumber = '';
     this.player.isDeleted = false;
     (this.$refs.form as any).resetValidation();
-  }
-  
-  private validate() {
-    
   }
 }
 </script>
