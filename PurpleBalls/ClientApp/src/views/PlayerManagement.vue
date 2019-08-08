@@ -8,15 +8,15 @@
                 <h1>Players</h1>
                 <p>Playaaaaaaaaaaaaaaaaaaaaaa</p>
             </div>
-            <v-layout align-end justify-end>
-
-                <v-btn color="secondary" @click="refreshPlayers">
-                    <v-icon left dark>refresh</v-icon>
-                    Refresh
-                </v-btn>
-
-                <AddPlayer />
-
+            <v-layout align-end justify-end >
+                <div class="action-buttons">
+                    <v-btn color="secondary" @click="refreshPlayers">
+                        <v-icon left dark>refresh</v-icon>
+                        Refresh
+                    </v-btn>
+    
+                    <AddPlayer />
+                </div>
             </v-layout>
         </v-layout>
 
@@ -35,10 +35,10 @@
             <td>{{ props.item.phoneNumber }}</td>
             <td>
               <v-btn fab dark small color="red">
-                <v-icon dark>remove</v-icon>
+                <v-icon>clear</v-icon>
               </v-btn>
               <v-btn fab dark small color="primary">
-                <v-icon dark>edit</v-icon>
+                <v-icon>edit</v-icon>
               </v-btn>
             </td>
           </template>
@@ -91,3 +91,9 @@ export default class PlayerManagementView extends Vue {
   }
 }
 </script>
+
+<style>
+    .action-buttons {
+        margin-bottom: 0.5rem;
+    }
+</style>

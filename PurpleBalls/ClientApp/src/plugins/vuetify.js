@@ -18,6 +18,7 @@ import {
   VAutocomplete,
   VSelect,
   VTextField,
+  VForm,
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
 
@@ -40,6 +41,7 @@ Vue.use(Vuetify, {
     VAutocomplete,
     VSelect,
     VTextField,
+    VForm,
   },
   theme: {
     primary: '#1976D2',
@@ -49,4 +51,4 @@ Vue.use(Vuetify, {
     info: '#2196F3',
     success: '#4CAF50',
   },
-})
+});
