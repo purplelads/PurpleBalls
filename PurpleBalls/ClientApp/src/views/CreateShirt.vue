@@ -32,7 +32,7 @@ const namespace: string = 'player';
 })
 export default class CreateShirtView extends Vue {
 
-  private selectedPlayer!: Player;
+  private selectedPlayer: Player = null;
 
   @Getter('playerShirts', { namespace })
   private playerShirts!: PlayerShirt[];
