@@ -33,6 +33,14 @@
             <td>{{ props.item.lastName }}</td>
             <td>{{ props.item.email }}</td>
             <td>{{ props.item.phoneNumber }}</td>
+            <td>
+              <v-btn fab dark small color="red">
+                <v-icon dark>remove</v-icon>
+              </v-btn>
+              <v-btn fab dark small color="primary">
+                <v-icon dark>edit</v-icon>
+              </v-btn>
+            </td>
           </template>
         </v-data-table>
 
@@ -58,16 +66,16 @@ export default class PlayerManagementView extends Vue {
     { text: 'Last Name', value: 'lastName' },
     { text: 'Email', value: 'email' },
     { text: 'Phone', value: 'phoneNumber' },
+    { text: 'Actions', value: 'actions' },
   ];
 
-  @Getter('getLoading', { namespace })
-  private loading!: boolean;
-  @Getter('getPlayers', { namespace })
+  private loading: boolean = false;
+
+  @Getter('players', { namespace })
   private players!: Player[];
+
   @Action('getPlayers', { namespace })
   private getPlayers: any;
-
-  private showEdit: boolean = false;
 
   private created() {
     if (this.players.length === 0) {
@@ -76,7 +84,10 @@ export default class PlayerManagementView extends Vue {
   }
 
   private refreshPlayers() {
-      this.getPlayers();
+    this.loading = true;
+    this.getPlayers().finally(() => {
+      this.loading = false;
+    });
   }
 }
 </script>

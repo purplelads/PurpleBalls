@@ -11,6 +11,7 @@ namespace PurpleBalls.Services.Players
     {
         Task<IEnumerable<Player>> GetAllPlayers();
         Task<Player> AddPlayer(Player player);
+        Task<bool> DeletePlayer(int id);
     }
 
     public class PlayersService : IPlayersService
@@ -32,6 +33,21 @@ namespace PurpleBalls.Services.Players
             await DbContext.SaveChangesAsync();
 
             return player;
+        }
+
+        public async Task<bool> DeletePlayer(int id)
+        {
+            var player = await DbContext.FindAsync<Player>(id);
+            if (player == null)
+            {
+                return false;
+            }
+
+            player.IsDeleted = true;
+            DbContext.Update(player);
+            await DbContext.SaveChangesAsync();
+
+            return true;
         }
     }
 }

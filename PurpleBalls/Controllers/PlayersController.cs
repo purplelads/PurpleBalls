@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PurpleBalls.Data.Models;
@@ -30,6 +31,18 @@ namespace PurpleBalls.Controllers
         public async Task<Player> AddPlayer([FromBody] Player player)
         {
             return await _playersService.AddPlayer(player);
+        }
+
+        [Route("{id:int}")]
+        [HttpDelete]
+        public async Task<ActionResult> DeletePlayer(int id)
+        {
+            if (!await _playersService.DeletePlayer(id))
+            {
+                return NotFound();
+            }
+
+            return Ok();
         }
     }
 }
