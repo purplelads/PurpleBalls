@@ -17,15 +17,32 @@ import { PlayerShirtModel } from '../models/PlayerShirtModel';
   components: { PlayerShirt },
 })
 export default class CreateShirtView extends Vue {
-  private playerShirt: PlayerShirtModel = {
-    shirtName: 'Causier',
-    shirtNumber: 14,
-    shirtStyle: 1,
-    shirtPrimary: '#000000',
-    shirtSecondary: '#555555',
-    textColour: '#ffffff',
-    playerId: 1,
-  };
+  
+  @Getter('playerShirts', { namespace })
+  private playerShirts!: PlayerShirt[];
+
+  @Action('getPlayerShirts', { namespace })
+  private getPlayerShirts: any;
+
+  @Getter('players', { namespace })
+  private players!: Player[];
+
+  @Action('getPlayers', { namespace })
+  private getPlayers: any;
+
+  private created() {
+    if (this.players.length === 0) {
+        this.refreshPlayers();
+    }
+    if (this.playerShirts.length ===0){
+        this.refreshPlayers();
+    }
+  }
+
+  private refreshPlayers() {
+    this.getPlayers();
+    this.getPlayerShirts();
+  }
 
 }
 </script>
