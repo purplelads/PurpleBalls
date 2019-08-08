@@ -7,6 +7,7 @@ import { RootState } from '../types';
 
 export const state: PlayersState = {
   players: [],
+  playerShirts: [],
 };
 
 const namespaced: boolean = true;

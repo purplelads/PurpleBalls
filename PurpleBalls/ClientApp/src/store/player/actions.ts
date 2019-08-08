@@ -3,6 +3,7 @@ import { ActionTree } from 'vuex';
 import { PlayersState } from './types';
 import { RootState } from '../types';
 import { Player } from '@/models/Player';
+import { PlayerShirtModel } from '@/models/PlayerShirtModel';
 
 export const actions: ActionTree<PlayersState, RootState> = {
   async getPlayers({ commit }): Promise<void> {
@@ -25,5 +26,12 @@ export const actions: ActionTree<PlayersState, RootState> = {
         .then((response) => {
             commit('deletePlayer', id);
         });
+  },
+  async getPlayerShirts({ commit }): Promise<void> {
+    return axios
+      .get<PlayerShirtModel[]>('api/players/shirts')
+      .then((response) => {
+        commit('setPlayerShirts', response.data);
+      });
   },
 };

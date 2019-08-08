@@ -17,4 +17,7 @@ export const mutations: MutationTree<PlayersState> = {
       }
     }
   },
+  setPlayerShirts(state, playerShirts) {
+    state.playerShirts = playerShirts;
+  },
 };

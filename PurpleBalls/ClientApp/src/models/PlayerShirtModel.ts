@@ -1,5 +1,6 @@
 export class PlayerShirtModel {
     constructor(
+        public playerShirtId: number,
         public shirtName: string,
         public shirtNumber: number,
         public shirtStyle: number,

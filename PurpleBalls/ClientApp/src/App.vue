@@ -40,6 +40,7 @@
 <script lang="ts">
 import HelloWorld from '@/components/HelloWorld.vue';
 import { Component, Vue } from 'vue-property-decorator';
+import _ from 'lodash';
 
 @Component({
   components: { HelloWorld },

@@ -44,5 +44,12 @@ namespace PurpleBalls.Controllers
 
             return Ok();
         }
+
+        [Route("shirts")]
+        [HttpGet]
+        public async Task<IEnumerable<PlayerShirt>> GetPlayerShirts()
+        {
+            return await _playersService.GetPlayerShirts();
+        }
     }
 }
