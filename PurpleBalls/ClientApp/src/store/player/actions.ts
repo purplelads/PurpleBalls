@@ -19,4 +19,11 @@ export const actions: ActionTree<PlayersState, RootState> = {
             commit('addPlayer', response.data);
         });
   },
+  async deletePlayer({ commit }, id: number): Promise<void> {
+    return axios
+        .delete('api/players/' + id)
+        .then((response) => {
+            commit('deletePlayer', id);
+        });
+  },
 };

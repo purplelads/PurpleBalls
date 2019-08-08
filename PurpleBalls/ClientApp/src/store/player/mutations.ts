@@ -9,4 +9,12 @@ export const mutations: MutationTree<PlayersState> = {
   addPlayer(state, player: Player) {
     state.players.push(player);
   },
+  deletePlayer(state, id: number) {
+    for (let i = 0; i < state.players.length; i++) {
+      if (state.players[i].playerId === id) {
+        state.players.splice(i, 1);
+        return;
+      }
+    }
+  },
 };

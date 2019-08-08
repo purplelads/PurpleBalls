@@ -34,9 +34,7 @@
             <td>{{ props.item.email }}</td>
             <td>{{ props.item.phoneNumber }}</td>
             <td>
-              <v-btn fab dark small color="red">
-                <v-icon>clear</v-icon>
-              </v-btn>
+              <DeletePlayer :player-id="props.item.playerId" />
               <v-btn fab dark small color="primary">
                 <v-icon>edit</v-icon>
               </v-btn>
@@ -52,13 +50,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Player } from '../models/Player';
-import axios from 'axios';
 import { Getter, Action } from 'vuex-class';
 import AddPlayer from '@/components/AddPlayer.vue';
+import DeletePlayer from '@/components/DeletePlayer.vue';
 const namespace: string = 'player';
 
 @Component({
-    components: { AddPlayer },
+    components: { AddPlayer, DeletePlayer },
 })
 export default class PlayerManagementView extends Vue {
   private headers = [
