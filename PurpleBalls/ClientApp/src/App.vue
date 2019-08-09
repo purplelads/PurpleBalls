@@ -38,23 +38,18 @@
 </template>
 
 <script lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import _ from 'lodash';
 
-@Component({
-  components: { HelloWorld },
-})
+@Component({})
 export default class App extends Vue {
   private clipped: boolean = true;
   private drawer: boolean = true;
   private miniVariant: boolean = false;
   private right: boolean = true;
-  private title: string = 'ASP.NET Core Vue Starter';
+  private title: string = 'Purple Balls';
   private items = [
     { title: 'Home', icon: 'home', link: '/' },
-    { title: 'Counter', icon: 'touch_app', link: '/counter' },
-    { title: 'Fetch data', icon: 'get_app', link: '/fetch-data' },
     { title: 'Player Management', icon: 'person_add', link: '/player-management' },
     { title: 'Create Shirt', icon: 'create', link: '/create-shirt'},
   ];

@@ -14,19 +14,6 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/counter',
-      name: 'counter',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "counter" */ './views/Counter.vue'),
-    },
-    {
-      path: '/fetch-data',
-      name: 'fetch-data',
-      component: () => import(/* webpackChunkName: "fetch-data" */ './views/FetchData.vue'),
-    },
-    {
       path: '/player-management',
       name: 'player-management',
       component: () => import(/* webpackChunkName: "fetch-data" */ './views/PlayerManagement.vue'),
