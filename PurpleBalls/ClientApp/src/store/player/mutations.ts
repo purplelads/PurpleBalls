@@ -20,4 +20,12 @@ export const mutations: MutationTree<PlayersState> = {
   setPlayerShirts(state, playerShirts) {
     state.playerShirts = playerShirts;
   },
+  savePlayerShirt(state, playerShirt) {
+    for (let i = 0; i < state.playerShirts.length; i++) {
+      if (state.playerShirts[i].playerShirtId === playerShirt.playerShirtId) {
+        state.playerShirts[i] = playerShirt;
+        return;
+      }
+    }
+  },
 };

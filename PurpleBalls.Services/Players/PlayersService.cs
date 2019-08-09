@@ -13,6 +13,7 @@ namespace PurpleBalls.Services.Players
         Task<Player> AddPlayer(Player player);
         Task<bool> DeletePlayer(int id);
         Task<IEnumerable<PlayerShirt>> GetPlayerShirts();
+        Task<bool> SavePlayerShirt(PlayerShirt shirt);
     }
 
     public class PlayersService : IPlayersService
@@ -54,6 +55,20 @@ namespace PurpleBalls.Services.Players
         public async Task<IEnumerable<PlayerShirt>> GetPlayerShirts()
         {
             return await DbContext.PlayerShirts.ToListAsync();
+        }
+
+        public async Task<bool> SavePlayerShirt(PlayerShirt shirt)
+        {
+            try
+            {
+                DbContext.Update<PlayerShirt>(shirt);
+                await DbContext.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -51,5 +51,17 @@ namespace PurpleBalls.Controllers
         {
             return await _playersService.GetPlayerShirts();
         }
+
+        [Route("saveShirt")]
+        [HttpPost]
+        public async Task<ActionResult> SavePlayerShirt([FromBody] PlayerShirt shirt)
+        {
+            if (!await _playersService.SavePlayerShirt(shirt))
+            {
+                return BadRequest();
+            };
+
+            return Ok();
+        }
     }
 }

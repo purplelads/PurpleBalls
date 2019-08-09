@@ -34,4 +34,11 @@ export const actions: ActionTree<PlayersState, RootState> = {
         commit('setPlayerShirts', response.data);
       });
   },
+  async savePlayerShirt({ commit }, playerShirt: PlayerShirtModel): Promise<void> {
+    return axios
+      .post<PlayerShirtModel>('api/players/saveShirt', playerShirt)
+      .then((response) => {
+        commit('savePlayerShirt', response.data);
+      });
+  },
 };
