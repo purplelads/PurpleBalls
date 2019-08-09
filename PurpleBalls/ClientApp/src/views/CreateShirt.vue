@@ -172,11 +172,11 @@ export default class CreateShirtView extends Vue {
   private selectPlayerShirt() {
     const self = this;
     if (self.selectedPlayer != null) {
-      const test = _.find(self.playerShirts, (s: PlayerShirtModel) => {
+      const shirt = _.find(self.playerShirts, (s: PlayerShirtModel) => {
         return s.playerId === self.selectedPlayer.playerId;
       });
-      if (test !== undefined) {
-        self.selectedPlayerShirt = test;
+      if (shirt !== undefined) {
+        self.selectedPlayerShirt = shirt;
       }
     } else {
       self.selectedPlayerShirt =  self.defaultShirt;

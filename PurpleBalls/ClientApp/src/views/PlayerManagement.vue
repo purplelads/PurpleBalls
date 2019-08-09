@@ -29,6 +29,7 @@
         >
           <v-progress-linear v-slot:progress color="blue" indeterminate></v-progress-linear>
           <template v-slot:items="props">
+            <td><PlayerShirt v-if="!loading" class="player-shirt" :shirt-info="getPlayerShirt(props.item)"/></td>
             <td>{{ props.item.firstName }}</td>
             <td>{{ props.item.lastName }}</td>
             <td>{{ props.item.email }}</td>
@@ -47,25 +48,47 @@
   </v-container>
 </template>
 
+<style>
+.player-shirt{
+  width: 50px;
+}
+</style>
+
+
 <script lang="ts">
+import _ from 'lodash';
 import { Component, Vue } from 'vue-property-decorator';
 import { Player } from '../models/Player';
 import { Getter, Action } from 'vuex-class';
 import AddPlayer from '@/components/AddPlayer.vue';
 import DeletePlayer from '@/components/DeletePlayer.vue';
+import PlayerShirt from '@/components/PlayerShirt.vue';
+import { PlayerShirtModel } from '../models/PlayerShirtModel';
 const namespace: string = 'player';
 
 @Component({
-    components: { AddPlayer, DeletePlayer },
+    components: { AddPlayer, DeletePlayer, PlayerShirt },
 })
 export default class PlayerManagementView extends Vue {
   private headers = [
+    { text: 'Shirt' },
     { text: 'First Name', value: 'firstName' },
     { text: 'Last Name', value: 'lastName' },
     { text: 'Email', value: 'email' },
     { text: 'Phone', value: 'phoneNumber' },
     { text: 'Actions', value: 'actions' },
   ];
+
+  private defaultShirt: PlayerShirtModel = {
+    playerShirtId: 0,
+    shirtName: 'Example',
+    shirtNumber: 0,
+    shirtStyle: 1,
+    shirtPrimary: '#000000',
+    shirtSecondary: '#000000',
+    textColour: '#FFFFFF',
+    playerId: 0,
+  };
 
   private loading: boolean = false;
 
@@ -75,16 +98,38 @@ export default class PlayerManagementView extends Vue {
   @Action('getPlayers', { namespace })
   private getPlayers: any;
 
+  @Getter('playerShirts', { namespace })
+  private playerShirts!: PlayerShirtModel[];
+
+  @Action('getPlayerShirts', { namespace })
+  private getPlayerShirts: any;
+
   private created() {
     if (this.players.length === 0) {
         this.refreshPlayers();
     }
   }
 
+  private getPlayerShirt(selectedPlayer: Player): PlayerShirtModel {
+    const self = this;
+    if (selectedPlayer != null) {
+      const shirt = _.find(self.playerShirts, (s: PlayerShirtModel) => {
+        return s.playerId === selectedPlayer.playerId;
+      });
+      if (shirt !== undefined) {
+        return shirt;
+      }
+    }
+
+    return this.defaultShirt;
+  }
+
   private refreshPlayers() {
     this.loading = true;
-    this.getPlayers().finally(() => {
-      this.loading = false;
+    this.getPlayers().then(() => {
+      this.getPlayerShirts().finally(() => {
+        this.loading = false;
+      });
     });
   }
 }
