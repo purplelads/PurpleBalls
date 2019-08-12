@@ -51,7 +51,7 @@
                   <Chrome :value='selectedPlayerShirt.textColour' @input='updateTextColour'></Chrome>
                 </v-flex>
 
-                <v-btn v-if='selectedPlayerShirt.playerId > 0' @click='savePlayer()' color='primary'>Save</v-btn>
+                <v-btn v-if='selectedPlayer != null && selectedPlayer.playerId > 0' @click='savePlayer()' color='primary'>Save</v-btn>
               </v-layout>
             </v-container>
             <small>*indicates required field</small>

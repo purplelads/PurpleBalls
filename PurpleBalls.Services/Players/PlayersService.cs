@@ -59,15 +59,32 @@ namespace PurpleBalls.Services.Players
 
         public async Task<bool> SavePlayerShirt(PlayerShirt shirt)
         {
-            try
+            var exists = await DbContext.PlayerShirts.Where(x => x.PlayerId == shirt.PlayerId).FirstOrDefaultAsync();
+            if (exists != null)
             {
-                DbContext.Update<PlayerShirt>(shirt);
-                await DbContext.SaveChangesAsync();
-                return true;
+                try
+                {
+                    DbContext.Update<PlayerShirt>(shirt);
+                    await DbContext.SaveChangesAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            catch
+            else
             {
-                return false;
+                try
+                {
+                    await DbContext.AddAsync<PlayerShirt>(shirt);
+                    await DbContext.SaveChangesAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
     }
